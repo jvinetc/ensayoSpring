@@ -62,11 +62,7 @@ public class ProductosController {
         return pagina;
     }
     
-    @RequestMapping(value = {"buscar/{codigo}"}, method = RequestMethod.GET)
-    @ResponseBody
-    public Producto producto(@PathVariable String codigo){
-        return productoServicio.buscarPorCodigo(codigo);
-    }
+   
 
     @ModelAttribute("modulos")
     public List<Modulos> listaModulos() {

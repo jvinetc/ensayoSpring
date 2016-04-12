@@ -5,6 +5,7 @@
  */
 package com.negocio.config;
 
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,35 +19,37 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.negocio")        
-class LoginConfig extends WebMvcConfigurerAdapter{
-     
+@ComponentScan(basePackages = "com.negocio")
+class LoginConfig extends WebMvcConfigurerAdapter {
+
     @Override
-    public void configureViewResolvers(ViewResolverRegistry registry){
-        InternalResourceViewResolver viewResolver= new InternalResourceViewResolver();
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".jsp");
         registry.viewResolver(viewResolver);
     }
-    
-     @Override
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");
     }
-        
+
     @Bean
-    public MessageSource messageSource(){
-        ResourceBundleMessageSource messageSource= new ResourceBundleMessageSource();
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         return messageSource;
-    } 
-    
+    }
+
     @Override
-    public void configurePathMatch(PathMatchConfigurer matcher){
+    public void configurePathMatch(PathMatchConfigurer matcher) {
         matcher.setUseRegisteredSuffixPatternMatch(true);
     }
-    
+
+   
 }
